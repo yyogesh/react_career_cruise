@@ -59,6 +59,7 @@ export const Select: React.FC<SelectProps> = ({
       )}
 
       <div
+       role="button"
         className={`
           relative 
           w-full 

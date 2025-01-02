@@ -39,7 +39,6 @@ const JobList = () => {
     const dispatch = useAppDispatch();
     const { jobs, loading, error } = useAppSelector((state: RootState) => state.jobs);
     // Fetching job data from API or local storage and dispatching action to update the state
-    console.log('jobs', jobs)
     useEffect(() => {
         dispatch(fetchJobs({}));
     }, [dispatch]);

@@ -2,6 +2,8 @@ import { useState } from "react";
 import Input from "../../../common/Input/Input";
 import { JOB_TYPES } from "../../../../config/constant";
 import Button from "../../../common/Button/Button";
+import { useAppDispatch } from "../../../../store/hook";
+import { setFilterJobs } from "../../../../store/slice/jobSlice";
 
 
 export interface JobFilterValues {
@@ -11,13 +13,16 @@ export interface JobFilterValues {
     minSalary: string;
 }
 
+const initialFilers: JobFilterValues = {
+    search: '',
+    location: '',
+    type: '',
+    minSalary: '',
+}
+
 const JobFilter = () => {
-    const [filters, setFilters] = useState<JobFilterValues>({
-        search: '',
-        location: '',
-        type: '',
-        minSalary: '',
-    });
+    const dispatch = useAppDispatch();
+    const [filters, setFilters] = useState<JobFilterValues>(initialFilers);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -26,15 +31,12 @@ const JobFilter = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        dispatch(setFilterJobs(filters));
     }
 
     const handleReset = () => {
-        setFilters({
-            search: '',
-            location: '',
-            type: '',
-            minSalary: '',
-        });
+        setFilters(initialFilers);
+        dispatch(setFilterJobs(filters));
     }
 
     return (

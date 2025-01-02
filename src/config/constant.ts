@@ -10,6 +10,29 @@ export const ROUTES = {
   APPLICATIONS: '/applications',
 };
 
+export const API_ENDPOINTS = {
+  AUTH: {
+    LOGIN: '/auth/login',
+    REGISTER: '/auth/register',
+    FORGOT_PASSWORD: '/auth/forgot-password',
+    RESET_PASSWORD: '/auth/reset-password',
+  },
+  JOBS: {
+    BASE: '/jobs',
+    SEARCH: '/jobs/search',
+    APPLY: '/jobs/apply',
+  },
+  USER: {
+    PROFILE: '/user/profile',
+    UPDATE_PROFILE: '/user/profile/update',
+    CHANGE_PASSWORD: '/user/change-password',
+  },
+  APPLICATIONS: {
+    BASE: '/applications',
+    USER: '/applications/user',
+  },
+};
+
 
 export const JOB_TYPES = ['full-time', 'part-time', 'contract'] as const;
 export type JobType = typeof JOB_TYPES[number];

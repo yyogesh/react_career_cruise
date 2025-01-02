@@ -4,6 +4,8 @@ import Footer from "./components/layout/Footer"
 import { routes } from "./routes/routes"
 import { Suspense } from "react"
 import Loader from "./components/common/Loader/Loader"
+import { Provider } from "react-redux"
+import { store } from "./store/Index"
 
 const AppRoutes = () => {
   const element = useRoutes(routes);
@@ -13,21 +15,23 @@ const AppRoutes = () => {
 function App() {
 
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 bg-gray-50">
-          <Suspense fallback={
-            <div className="min-h-[50vh] flex items-center justify-center">
-              <Loader size="large" />
-            </div>
-          }>
-            <AppRoutes />
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1 bg-gray-50">
+            <Suspense fallback={
+              <div className="min-h-[50vh] flex items-center justify-center">
+                <Loader size="large" />
+              </div>
+            }>
+              <AppRoutes />
+            </Suspense>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </Provider>
   )
 }
 
